@@ -84,19 +84,18 @@ async def send_to_channel(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     try:
+        # إزالة parse_mode لضمان قبول جميع الرموز والأسماء
         if file_info['type'] == 'document':
             await context.bot.send_document(
                 chat_id=CHANNEL_ID,
                 document=file_info['id'],
-                caption=caption,
-                parse_mode='Markdown'
+                caption=caption
             )
         else:
             await context.bot.send_photo(
                 chat_id=CHANNEL_ID,
                 photo=file_info['id'],
-                caption=caption,
-                parse_mode='Markdown'
+                caption=caption
             )
             
         await update.message.reply_text(
